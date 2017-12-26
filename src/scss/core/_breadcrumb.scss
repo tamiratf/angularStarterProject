@@ -1,0 +1,5 @@
+.breadcrumb {
+  position: fixed;
+  width: 100%;
+  @include borders($breadcrumb-borders);
+}
