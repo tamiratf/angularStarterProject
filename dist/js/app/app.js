@@ -1,28 +1,36 @@
-// Default colors
-var brandPrimary =  '#20a8d8';
-var brandSuccess =  '#4dbd74';
-var brandInfo =     '#63c2de';
-var brandWarning =  '#f8cb00';
-var brandDanger =   '#f86c6b';
-
-var grayDark =      '#2a2c36';
-var gray =          '#55595c';
-var grayLight =     '#818a91';
-var grayLighter =   '#d1d4d7';
-var grayLightest =  '#f8f9fa';
-
+(function () {
 angular
   .module('app', [
     'ui.router',
-    'oc.lazyLoad',
     'ncy-angular-breadcrumb',
     'angular-loading-bar',
     'angular-jwt',
-    'ngStorage'
+    'ngStorage',
+    'AppAuthentication'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
-    
-    $urlRouterProvider.otherwise('/dashboard');
+  .run(['$rootScope', '$state', '$stateParams', '$localStorage', 'jwtHelper', function ($rootScope, $state, $stateParams, $localStorage, jwtHelper) {
+    $rootScope.$on('$locationChangeStart', function () {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+  
+    $rootScope.$on('$locationChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+      var token = $localStorage.token;
+      var currentStateHash = angular.copy(window.location.hash);
+      if (!token || jwtHelper.isTokenExpired(token)) {
+        window.location.href = window.location.origin + "/#/login";
+        if (currentStateHash !== '#/login')
+        {
+          window.location.reload();
+        }  
+      }
+    });
+    $rootScope.$state = $state;
+    return $rootScope.$stateParams = $stateParams;
+  }])
+  .config(['$locationProvider', 'cfpLoadingBarProvider', '$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider',
+    function ($locationProvider, cfpLoadingBarProvider, $stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
+    $locationProvider.hashPrefix('');
+    $urlRouterProvider.otherwise('/login');
     
       $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
@@ -61,23 +69,10 @@ angular
       .state('app.login', {
         url: '/login',
         templateUrl: 'views/pages/login.html',
+        Controller: 'AuthenticationCtrl',
         ncyBreadcrumb: {
           label: 'Login',
         }
       })
-  }])
-  .run(['$rootScope', '$state', '$stateParams', '$localStorage', 'jwtHelper', function ($rootScope, $state, $stateParams, $localStorage, jwtHelper) {
-    $rootScope.$on('$stateChangeSuccess', function () {
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
-    });
-  
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      var token = $localStorage.token;
-
-      if (!token || jwtHelper.isTokenExpired(token)) {
-        window.location.href = window.location.origin + "/login";
-      }
-    });
-    $rootScope.$state = $state;
-    return $rootScope.$stateParams = $stateParams;
-  }]);
+    }]);
+}());

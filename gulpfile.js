@@ -40,7 +40,7 @@ gulp.task('serve:lite', function() {
 
   gulp.watch(paths.src + '**/*.css').on('change', browserSync.reload);
   gulp.watch(paths.src + '**/*.html').on('change', browserSync.reload);
-  gulp.watch(paths.src + 'js/**/*.js').on('change', browserSync.reload);
+  gulp.watch(paths.src + 'js/app/**/*.js').on('change', browserSync.reload);
 
 });
 

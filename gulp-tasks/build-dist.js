@@ -219,8 +219,8 @@ gulp.task('copy:img', function() {
 });
 
 gulp.task('copy:js', function() {
-   return gulp.src(paths.src + 'js/**/*')
-   .pipe(gulp.dest(paths.dist + 'js'));
+   return gulp.src(paths.src + 'js/app/**/*.js')
+   .pipe(gulp.dest(paths.dist + 'js/app'));
 });
 
 gulp.task('copy:views', function() {

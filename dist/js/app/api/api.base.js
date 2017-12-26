@@ -1,6 +1,6 @@
 (function()
 {
-    angular.module('api.base', [
+    angular.module('api-base', [
             'restangular',
             'ngStorage'
         ])

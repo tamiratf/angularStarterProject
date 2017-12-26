@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden" ng-controller="AppController">
 
   <!-- User Interface -->
   <ui-view class="app"></ui-view>
@@ -51,13 +51,14 @@
 
   <!-- AngularJS CoreUI App scripts -->
 
-  <script src="js/app/app.js"></script>
 
   <script src="js/app/controllers.js"></script>
-  <script src="js/app/directives.js"></script>
   <script src="js/app/api/api.base.js"></script>
   <script src="js/app/api/api.users.js"></script>
   <script src="js/app/security/authentication.js"></script>
 
+  <script src="js/app/app.js"></script>
+
+  <script src="js/app/directives.js"></script>
 </body>
 </html>

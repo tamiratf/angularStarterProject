@@ -1,4 +1,4 @@
-<div class="app flex-row align-items-center">
+<div class="app flex-row align-items-center" ng-controller="AuthenticationCtrl">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -8,16 +8,16 @@
               <h1>Login</h1>
               <p class="text-muted">Sign In to your account</p>
               <div class="input-group mb-3">
-                <span class="input-group-addon"><i class="icon-user">U</i></span>
-                <input type="text" class="form-control" placeholder="Username">
+                <span class="input-group-addon"><i class="icon-user">@</i></span>
+                <input type="text" ng-model="user.email" class="form-control" placeholder="Email">
               </div>
               <div class="input-group mb-4">
-                <span class="input-group-addon"><i class="icon-lock">@</i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                <input type="password" ng-model="user.password" class="form-control" placeholder="Password">
               </div>
               <div class="row">
                 <div class="col-6">
-                  <button type="button" class="btn btn-primary px-4">Login</button>
+                  <button type="button" class="btn btn-primary px-4" ng-click="login();">Login</button>
                 </div>
                 <div class="col-6 text-right">
                   <button type="button" class="btn btn-link px-0">Forgot password?</button>

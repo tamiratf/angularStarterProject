@@ -1,6 +1,20 @@
+
 (function () {
-    angular.module('app.authenticate',['api.users', 'ngStorage'])
-        .controller('loginCtrl', function($scope, userApi, $http, $localStorage, $location)
+
+    var moduleDependencies = [
+        'api-users', 'ngStorage'
+    ];
+    var controllerDependencies = [
+        '$scope', 'userApi', '$http', '$localStorage', '$location'
+    ];
+    
+    angular.module('AppAuthentication', moduleDependencies)
+
+        .controller('ActivityDetailCtrl', AuthenticationCtrl);
+
+        AuthenticationCtrl.$inject = controllerDependencies;
+
+        function AuthenticationCtrl($scope, userApi, $http, $localStorage, $location)
         {
             $scope.login = function()
             {
@@ -12,7 +26,7 @@
                 return $http(
                     {
                         method: 'POST',
-                        url: 'authenticate',
+                        url: 'http://fixedasset:8000/api/v1/users',
                         data: user
                     }).then(function(response)
                     {
@@ -23,5 +37,8 @@
                         console.log("error : " + error.data.error);
                     });
             };
-        });
+
+            $scope.login();
+        }
+
 }());
