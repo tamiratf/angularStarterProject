@@ -1,7 +1,7 @@
 (function()
 {
-    angular.module('api-users', [
-            'api-base'
+    angular.module('api.users', [
+            'api.base'
         ])
         .factory('userApi', [
             'baseApi'

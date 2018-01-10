@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <strong>Add User </strong>
+      </div>
+      
+      <div class="row">
+      <div class="card-body"> 
+
+          <div ng-if="user.successful" class="alert alert-success" role="alert">
+              <strong>Well done!</strong> You successfully read this important alert message.
+            </div>
+          <div ng-if="user.error" class="alert alert-danger" role="alert">
+            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+          </div>
+
+            <form class="form-horizontal" name="userCreateForm" ng-submit="updateUser();">
+              <div class="row form-group">
+                  <label class="col-md-2 control-label pull-right" for="firstName">First Name:</label> 
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="firstName" required ng-model="user.firstName" placeholder="Enter First Name">
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <label class="col-md-2 control-label pull-right" for="lastName">Last Name:</label> 
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="lastName" ng-model="user.lastName" placeholder="Enter Last Name">
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <label class="col-md-2 control-label pull-right" for="userName">user Name:</label> 
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="userName" required ng-model="user.userName" placeholder="Enter Username">
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <label class="col-md-2 control-label pull-right" for="email">E-mail:</label> 
+                  <div class="col-md-6">
+                    <input type="email" class="form-control" id="email" required ng-model="user.email" placeholder="Enter Email">
+                  </div>
+              </div>
+              <div class="row form-group"> 
+                <div class="offset-md-2"></div>
+                <div class="col-md-2">
+                    <button type="button" ng-click="deleteUser();" class="form-control btn-danger"> Delete </button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" ng-click="gotoUserListScreen();" class="form-control btn-defaul"> Cancel </button>
+                  </div>
+                <div class="col-md-2">
+                    <button type="submit" class="form-control btn-success"> Save </button>
+                </div>
+              </div>
+            </form>
+      </div>      
+    </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+      <div class="card">
+          <div class="card-header">
+            <strong>User Role </strong>
+          </div>
+          
+          <div class="row">
+          <div class="card-body"> 
+    
+              <div ng-if="user.successful" class="alert alert-success" role="alert">
+                  <strong>Well done!</strong> You successfully read this important alert message.
+              </div>
+              <div ng-if="user.error" class="alert alert-danger" role="alert">
+                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+              </div>
+    
+                <form class="form-horizontal" name="userCreateForm" ng-submit="updateUser();">
+                  <div class="row form-group">
+                      <label class="col-md-3 control-label pull-right" for="roles">Roles :</label> 
+                      <div class="col-md-5">
+                        <select class="form-control" ng-model="user.role" ng-options="role.id as role.name for role in roles" >
+                            <option></option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>Role Name</td>
+                          <td>Action</td>
+                        </tr>
+                        <tr ng-repeat="role in user.roles">
+                          <td>{{role.name}}</td>
+                          <td><span class="glyphicon glyphicon-trash" aria-hidden="true"></span><span class="glyphicon glyphicon-envelope"></span></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </form>
+          </div>      
+        </div>
+        </div>
+  </div>
+  </div>
+
+  

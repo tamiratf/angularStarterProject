@@ -1,7 +1,7 @@
 (function()
 {
-    angular.module('api-userroles', [
-            'api-base'
+    angular.module('api.userroles', [
+            'api.base'
         ])
         .factory('userRoleApi', [
             'baseApi'

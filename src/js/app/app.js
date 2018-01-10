@@ -7,7 +7,10 @@
       'angular-loading-bar',
       'angular-jwt',
       'ngStorage',
-      'AppAuthentication'
+      'AppAuthentication',
+      'App.AccessControl.User.List',
+      'App.AccessControl.User.Create',
+      'App.AccessControl.User.Detail'
     ])
     .run(['$rootScope', '$state', '$stateParams', '$localStorage', 'jwtHelper', function ($rootScope, $state, $stateParams, $localStorage, jwtHelper) {
       $rootScope.$on('$locationChangeStart', function () {
@@ -65,12 +68,35 @@
             //page subtitle goes here
             params: { subtitle: 'Welcome to ROOT powerfull Bootstrap & AngularJS UI Kit' }
           })
-          // Additional Pages
           .state('app.login', {
             url: '/login',
             templateUrl: 'views/pages/login.html',
             ncyBreadcrumb: {
               label: 'Login',
+            }
+          })
+          .state('app.userList', {
+            url: '/user',
+            templateUrl: 'js/app/accessControl/user/userList.tpl.html',
+            controller: 'UserListCtrl',
+            ncyBreadcrumb: {
+              label: 'User Management'
+            }
+          })
+          .state('app.userCreate', {
+            url: '/user/create',
+            templateUrl: 'js/app/accessControl/user/userCreate.tpl.html',
+            controller: 'UserCreateCtrl',
+            ncyBreadcrumb: {
+              label: 'Add User'
+            }
+          })
+          .state('app.userDetail', {
+            url: '/user/{id}',
+            templateUrl: 'js/app/accessControl/user/userDetail.tpl.html',
+            controller: 'UserDetailCtrl',
+            ncyBreadcrumb: {
+              label: 'User Detail'
             }
           })
       }]).controller('AppController', function ($scope, $localStorage, $state) {
