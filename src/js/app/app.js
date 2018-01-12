@@ -76,7 +76,7 @@
           })
           .state('app.login', {
             url: '/login',
-            templateUrl: 'views/pages/login.html',
+            templateUrl: 'js/app/security/login.tpl.html',
             ncyBreadcrumb: {
               label: 'Login',
             }
