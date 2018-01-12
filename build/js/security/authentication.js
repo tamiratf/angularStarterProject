@@ -1,1 +1,0 @@
-angular.module("AppAuthentication",["ngStorage"]).controller("AuthenticationCtrl",function(t,n,o,e,a){t.login=function(){return n({method:"POST",url:"http://fixedasset:8000/authenticate",data:t.user}).then(function(t){o.token=t.data.token,a.go("app.main")},function(t){console.log("error : "+t.data.error)})}});
