@@ -10,7 +10,7 @@
             ,function(Restangular, $localStorage) {
                 return Restangular.withConfig(
                     function(Configurer) {
-                        Configurer.setBaseUrl('/api/v1');
+                        Configurer.setBaseUrl('http://fixedasset:8000/api/v1');
 
                         Configurer.addResponseInterceptor(
                             function(data, operation, what, url, response, deferred) {

@@ -13,21 +13,23 @@
       </a>
     </li>
   </ul>
-
-  <ul class="nav navbar-nav ml-auto d-md-down-none">    
-    <li class="nav-item dropdown">
+  
+  
+  <ul class="nav navbar-nav ml-auto d-md-down-none" >    
+    <li class="nav-item dropdown" ng-if="isAuthenticated">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+        <!-- <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"> -->
+        <span class="pull-right" >{{authenticatedUserFullName}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
 
         <div class="dropdown-header text-center">
           <strong>Account</strong>
         </div>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile Management</a>
         <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
         <div class="divider"></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item" href="#" ng-click="logout();"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </li>
 

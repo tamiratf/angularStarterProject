@@ -1,23 +1,23 @@
 <!-- Navbar -->
-<div ng-include="'views/common/navbar.html'" include-replace></div>
+<div ng-include="'views/common/navbar.html'" include-replace ng-if="isAuthenticated"></div>
 <div class="app-body">
   <!-- Navigation -->
-  <div ng-include="'views/common/sidebar-nav.html'" include-replace></div>
+  <div ng-include="'views/common/sidebar-nav.html'" include-replace ng-if="isAuthenticated"></div>
   <!-- Main content -->
   <main class="main">
     <!-- Breadcrumb -->
-    <ol class="breadcrumb " breadcrumb>
+    <ol class="breadcrumb " breadcrumb ng-if="isAuthenticated">
       <ncy-breadcrumb></ncy-breadcrumb>
 
     </ol>
-    <div class="app app-content">
+    <div class="app app-content col-md-10" style="padding: 100px;  height: 100% !important;">
       <ui-view></ui-view>
     </div>
     <!-- /.conainer-fluid -->
   </main>
-  
 
 </div>
 
+
 <!-- Footer -->
-<div ng-include="'views/common/footer.html'" include-replace></div>
+<div ng-include="'views/common/footer.html'" include-replace ng-if="isAuthenticated"></div>

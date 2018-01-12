@@ -2,8 +2,21 @@
   <nav class="sidebar-nav">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" ui-sref-active="active" ui-sref="app.main"><i class="icon-speedometer"></i> Dashboard</a>
-        <a class="nav-link" ui-sref-active="active" ui-sref="app.login"><i class="icon-speedometer"></i> Login </a>
+        <a class="nav-link" ui-sref-active="active" ui-sref="app.main"><i class="fa fa-home"></i> Dashboard</a>
+      </li>
+      <li class="nav-item nav-dropdown" >
+        <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-gears"></i> Access Control</a>
+        <ul class="nav-dropdown-items" style="padding-left: 10px;">
+          <li class="nav-item">
+            <a class="nav-link" ui-sref-active="active" ui-sref="app.userList"><i class="fa fa-user-o"></i> User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ui-sref-active="active" ui-sref="app.roleList"><i class="fa fa-tasks"></i> Role </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ui-sref-active="active" ui-sref="app.permissionList"><i class="fa fa-low-vision"></i> Permission </a>
+          </li>
+        </ul>
       </li>
 
     </ul>

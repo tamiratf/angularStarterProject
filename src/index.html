@@ -21,10 +21,16 @@
 
   <!-- Main styles for this application -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="node_modules/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="node_modules/angular-ui-grid/ui-grid.min.css" rel="stylesheet">
+  <link href="node_modules/angular-xeditable/dist/css/xeditable.min.css" rel="stylesheet">
 
 </head>
 
-<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden" ng-controller="AppController">
 
   <!-- User Interface -->
   <ui-view class="app"></ui-view>
@@ -32,7 +38,9 @@
   <!-- Bootstrap and necessary plugins -->
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="node_modules/tether/dist/js/tether.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="node_modules/lodash/index.js"></script>
 
   <!-- AngularJS -->
   <script src="node_modules/angular/angular.min.js"></script>
@@ -41,9 +49,11 @@
   <script src="node_modules/angular-animate/angular-animate.min.js"></script>
   <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
-  <script src="node_modules/restangular/dist/restangular.min.js"></script>
+  <script src="node_modules/restangular/dist/restangular.js"></script>
   <script src="node_modules/ngstorage/ngStorage.min.js"></script>
   <script src="node_modules/angular-jwt/dist/angular-jwt.min.js"></script>
+  <script src="node_modules/angular-ui-grid/ui-grid.min.js"></script>
+  <script src="node_modules/angular-xeditable/dist/js/xeditable.min.js"></script>
 
   <script src="node_modules/oclazyload/dist/ocLazyLoad.min.js"></script>
   <script src="node_modules/angular-breadcrumb/dist/angular-breadcrumb.min.js"></script>
@@ -51,13 +61,27 @@
 
   <!-- AngularJS CoreUI App scripts -->
 
-  <script src="js/app/app.js"></script>
 
   <script src="js/app/controllers.js"></script>
-  <script src="js/app/directives.js"></script>
   <script src="js/app/api/api.base.js"></script>
   <script src="js/app/api/api.users.js"></script>
+  <script src="js/app/api/api.roles.js"></script>
+  <script src="js/app/api/api.permissions.js"></script>
+  <script src="js/app/api/api.userroles.js"></script>
+  <script src="js/app/api/api.permissionroles.js"></script>
   <script src="js/app/security/authentication.js"></script>
+  <script src="js/app/accessControl/user/userList.js"></script>
+  <script src="js/app/accessControl/user/userCreate.js"></script>
+  <script src="js/app/accessControl/user/userDetail.js"></script>
+  <script src="js/app/accessControl/role/roleList.js"></script>
+  <script src="js/app/accessControl/role/roleCreate.js"></script>
+  <script src="js/app/accessControl/role/roleDetail.js"></script>
+  <script src="js/app/accessControl/permission/permissionList.js"></script>
+  <script src="js/app/accessControl/permission/permissionCreate.js"></script>
+  <script src="js/app/accessControl/permission/permissionDetail.js"></script>
 
+  <script src="js/app/app.js"></script>
+
+  <script src="js/app/directives.js"></script>
 </body>
 </html>
