@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>Users </strong>
+      </div>
+      <div class="card-body">        
+        <div class="row">
+          <div class=col-md-4><label class="col-md-4 col-form-label" for="text-input">User Name</label></div>
+          <div class=col-md-4><label class="col-md-4 col-form-label" for="text-input">First Name</label></div>
+          <div class=col-md-4><label class="col-md-4 col-form-label" for="text-input">Email</label></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><input type="text" id="txtUserName" ng-model="user.userName" class="form-control"></div>
+          <div class="col-md-4"><input type="text" id="txtFirstName" ng-model="user.firstName" class="form-control"></div>
+          <div class="col-md-4"><input type="text" id="txtEmail" ng-model="user.email" class="form-control"></div>
+        </div>
+        <hr/>
+        <div class="row" >
+          <div class="col-md-6 pull-left">
+              <button type="button" class="col-md-6 btn btn-success" ng-click="searchUser();"><i class="fa fa-search"></i> Search</button>
+              <button type="button" class="col-md-5 btn btn-default" ng-click="resetSearch();"><i class="fa fa-refresh"></i> Reset</button>              
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="col-md-4 btn btn-success pull-right" style="float: right;" ng-click="gotoCreateUser();">
+              <i class="fa fa-plus"></i> Add User</button>
+          </div>
+        </div>
+        <hr/>
+        <div class="table-responsive">
+          <div ui-grid="users" class="grid-default" ui-grid-selection ui-grid-pagination></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
