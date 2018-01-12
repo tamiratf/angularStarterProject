@@ -18,3 +18,9 @@ editable-input {
     border-radius: 0;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+
+.no-border {
+    border: 0 solid transparent !important;
+    border-bottom: 1px solid #c2cfd6 !important;
+    box-shadow: none;
+}

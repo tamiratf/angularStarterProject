@@ -46,7 +46,8 @@
     "gulp-sourcemaps": "^2.6.3",
     "gulp-uglify": "^3.0.0",
     "require-dir": "^0.3.2",
-    "run-sequence": "^2.1.0"
+    "run-sequence": "^2.1.0",
+    "tether": "^1.4.3"
   },
   "scripts": {
     "gulp": "gulp",

@@ -10,7 +10,13 @@
       'AppAuthentication',
       'App.AccessControl.User.List',
       'App.AccessControl.User.Create',
-      'App.AccessControl.User.Detail'
+      'App.AccessControl.User.Detail',
+      'App.AccessControl.Role.List',
+      'App.AccessControl.Role.Create',
+      'App.AccessControl.Role.Detail',
+      'App.AccessControl.Permission.List',
+      'App.AccessControl.Permission.Create',
+      'App.AccessControl.Permission.Detail'
     ])
     .run(['$rootScope', '$state', '$stateParams', '$localStorage', 'jwtHelper', function ($rootScope, $state, $stateParams, $localStorage, jwtHelper) {
       $rootScope.$on('$locationChangeStart', function () {
@@ -88,7 +94,7 @@
             templateUrl: 'js/app/accessControl/user/userCreate.tpl.html',
             controller: 'UserCreateCtrl',
             ncyBreadcrumb: {
-              label: 'Add User'
+              label: 'Add New User'
             }
           })
           .state('app.userDetail', {
@@ -99,9 +105,72 @@
               label: 'User Detail'
             }
           })
-      }]).controller('AppController', function ($scope, $localStorage, $state) {
-          $scope.logout = function ()
-          {
+          .state('app.roleList', {
+            url: '/role',
+            templateUrl: 'js/app/accessControl/role/roleList.tpl.html',
+            controller: 'RoleListCtrl',
+            ncyBreadcrumb: {
+              label: 'Role Management'
+            }
+          })
+          .state('app.roleCreate', {
+            url: '/role/create',
+            templateUrl: 'js/app/accessControl/role/roleCreate.tpl.html',
+            controller: 'RoleCreateCtrl',
+            ncyBreadcrumb: {
+              label: 'Add New Role'
+            }
+          })
+          .state('app.roleDetail', {
+            url: '/role/{id}',
+            templateUrl: 'js/app/accessControl/role/roleDetail.tpl.html',
+            controller: 'RoleDetailCtrl',
+            ncyBreadcrumb: {
+              label: 'Role Detail'
+            }
+          })
+          .state('app.permissionList', {
+            url: '/permission',
+            templateUrl: 'js/app/accessControl/permission/permissionList.tpl.html',
+            controller: 'PermissionListCtrl',
+            ncyBreadcrumb: {
+              label: 'Permission List'
+            }
+          })
+          .state('app.permissionCreate', {
+            url: '/permission/create',
+            templateUrl: 'js/app/accessControl/permission/permissionCreate.tpl.html',
+            controller: 'PermissionCreateCtrl',
+            ncyBreadcrumb: {
+              label: 'Add New Permission'
+            }
+          })
+          .state('app.permissionDetail', {
+            url: '/permission/{id}',
+            templateUrl: 'js/app/accessControl/permission/permissionDetail.tpl.html',
+            controller: 'PermissionDetailCtrl',
+            ncyBreadcrumb: {
+              label: 'Permission Detail'
+            }
+          })
+      }]).controller('AppController', function ($scope, $localStorage, $state, jwtHelper, $rootScope) {
+        
+        var token = $localStorage.token;  
+        if (token)
+        {
+          $rootScope.isAuthenticated = true;
+          var claims = jwtHelper.decodeToken(token);
+        }  
+
+        if (claims)
+        {
+          $rootScope.authenticatedUserFullName = claims.firstName + ' ' + claims.lastName; 
+          $rootScope.authenticatedUserName = claims.userName;
+        }  
+        
+        $scope.logout = function ()
+        {
+              $rootScope.isAuthenticated = false;
               $localStorage.token = null;
               $state.go('app.login');
           };

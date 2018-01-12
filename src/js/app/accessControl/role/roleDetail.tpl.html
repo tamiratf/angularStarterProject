@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <strong>Role Detail </strong>
+      </div>
+      
+      <div class="row">
+      <div class="card-body"> 
+
+          <div ng-if="role.successful" class="alert alert-success" role="alert">
+              <strong>Well done!</strong> You successfully read this important alert message.
+            </div>
+          <div ng-if="role.error" class="alert alert-danger" role="alert">
+            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+          </div>
+
+            <form class="form-horizontal" name="roleDetailForm" ng-submit="updateRole();">
+              <div class="row form-group">
+                  <label class="col-md-2 control-label pull-right" for="roleName">Role Name:</label> 
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="roleName" required ng-model="role.name" placeholder="Role Name">
+                  </div>
+              </div>
+              <div class="row form-group">
+                  <label class="col-md-2 control-label pull-right" for="description">Description:</label> 
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="description" ng-model="role.description" placeholder="Description">
+                  </div>
+              </div>
+              <div class="row form-group"> 
+                <div class="offset-md-2"></div>
+                <div class="col-md-2">
+                    <button type="button" ng-click="deleteRole();" class="form-control btn-danger"> Delete </button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" ng-click="gotoRoleListScreen();" class="form-control btn-defaul"> Cancel </button>
+                  </div>
+                <div class="col-md-2">
+                    <button type="submit" class="form-control btn-success"> Save </button>
+                </div>
+              </div>
+            </form>
+      </div>      
+    </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+      <div class="card">
+          <div class="card-header">
+            <strong>Permission Role </strong>
+          </div>
+          
+          <div class="row">
+          <div class="card-body">   
+              
+                <form class="form-horizontal" name="userDetailPermissionForm">
+                  <div class="row form-group">
+                      <label class="col-md-3 control-label pull-right" for="permissions">Permissions :</label> 
+                      <div class="col-md-5">
+                        <select class="form-control no-border" ng-model="role.permission" ng-options="permission as permission.name for permission in permissions" >
+                            <option></option>
+                        </select>
+                      </div>
+                      <div class="col-md-2">
+                        <button ng-click="addPermission(role.permission)" class="btn btn-sm"> <span class="fa fa-save"></span> </button>
+                      </div>
+                  </div>
+                  <hr />
+                  <div class="row form-group">
+                    <div class="col-md-12">
+                      <table class="table table-bordered">
+                        <tr>
+                          <td colspan="2">
+                            <input type="text" class="form-control no-border" ng-model="role.search" placeholder="filter permission">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Permission Name</td>
+                          <td>Action</td>
+                        </tr>
+                        <tr ng-repeat="permission in role.permissions | filter:{ name: role.search }">
+                          <td>{{permission.name}}</td>
+                          <td><span class="fa fa-trash" ng-click="deletePermission(permission);"></span></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </form>
+          </div>      
+        </div>
+        </div>
+  </div>
+  </div>
+
+  

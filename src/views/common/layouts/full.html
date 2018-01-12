@@ -1,12 +1,12 @@
 <!-- Navbar -->
-<div ng-include="'views/common/navbar.html'" include-replace></div>
+<div ng-include="'views/common/navbar.html'" include-replace ng-if="isAuthenticated"></div>
 <div class="app-body">
   <!-- Navigation -->
-  <div ng-include="'views/common/sidebar-nav.html'" include-replace></div>
+  <div ng-include="'views/common/sidebar-nav.html'" include-replace ng-if="isAuthenticated"></div>
   <!-- Main content -->
   <main class="main">
     <!-- Breadcrumb -->
-    <ol class="breadcrumb " breadcrumb>
+    <ol class="breadcrumb " breadcrumb ng-if="isAuthenticated">
       <ncy-breadcrumb></ncy-breadcrumb>
 
     </ol>
@@ -18,5 +18,6 @@
 
 </div>
 
+
 <!-- Footer -->
-<div ng-include="'views/common/footer.html'" include-replace></div>
+<div ng-include="'views/common/footer.html'" include-replace ng-if="isAuthenticated"></div>

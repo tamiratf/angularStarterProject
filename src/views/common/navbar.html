@@ -13,11 +13,13 @@
       </a>
     </li>
   </ul>
-
-  <ul class="nav navbar-nav ml-auto d-md-down-none">    
-    <li class="nav-item dropdown">
+  
+  
+  <ul class="nav navbar-nav ml-auto d-md-down-none" >    
+    <li class="nav-item dropdown" ng-if="isAuthenticated">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+        <!-- <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"> -->
+        <span class="pull-right" >{{authenticatedUserFullName}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
 

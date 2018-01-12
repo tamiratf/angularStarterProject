@@ -5,9 +5,10 @@
         'ui.grid.pagination',
         'api.users',
         'xeditable',
-        'api.roles'
+        'api.roles',
+        'api.userroles'
         ])
-        .controller('UserDetailCtrl', function($scope, $http, $state,$stateParams, userApi, roleApi)
+        .controller('UserDetailCtrl', function($scope, $http, $state,$stateParams, userApi, roleApi,userRoleApi)
         {
            
             $scope.initializeUserDetailScreen = function () {
@@ -15,11 +16,8 @@
                 $scope.user.successful = false;
                 $scope.user.error = false;
                 $scope.roles = [];
-                userApi.getList({ "whereid": $stateParams.id, "with[]": 'Roles' } ).then(function (data) {
-                    $scope.user = data[0];
-                }, function (error) {
-                    $scope.user = {}
-                    });
+
+                $scope.refreshScreen();
                 
                 roleApi.getList().then(function (data) {
                     $scope.roles = data;
@@ -27,6 +25,14 @@
                     $scope.roles = [];
                 });
             };
+
+            $scope.refreshScreen = function () {
+                userApi.getList({ "whereid": $stateParams.id, "with[]": 'Roles' } ).then(function (data) {
+                    $scope.user = data[0];
+                }, function (error) {
+                    $scope.user = {}
+                    });
+            }; 
 
             $scope.initializeUserDetailScreen();
 
@@ -53,6 +59,33 @@
                     });
                 }    
             };
+
+            $scope.addRole = function (role) {
+                var isRoleExists = _.some($scope.user.roles, { id: role });
+                if (!isRoleExists)
+                {
+                    userRoleApi.post({userId: $stateParams.id, roleId: role.id}).then(function (response) {
+                        $scope.refreshScreen();
+                    });
+                }    
+            };    
+
+            $scope.deleteRole = function (role) {
+                $result = confirm("are you sure you want to delete the user?", true, false);
+                if ($result) {
+                    var userRole = {};
+                    userRoleApi.getList({ "whereuserId": $stateParams.id, "whereroleId": role.id }).then(function (data) {
+                        userRole = data[0];
+
+                        if (userRole && _.has(userRole, 'remove')) {
+                            userRole.remove().then(function (response) {
+                                $scope.refreshScreen();
+                            });
+                        }
+                    });
+                }    
+                  
+            };    
 
         });
 }());
