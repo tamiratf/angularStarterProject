@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>Permissions </strong>
+      </div>
+      <div class="card-body">        
+        <div class="row">
+          <div class=col-md-8><label class="col-md-8 col-form-label" for="txtPermissionName">Permission Name</label></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"><input type="text" id="txtPermissionName" ng-model="permission.name" class="form-control"></div>
+        </div>
+        <hr/>
+        <div class="row" >
+          <div class="col-md-6 pull-left">
+              <button type="button" class="col-md-6 btn btn-success" ng-click="searchPermission();"><i class="fa fa-search"></i> Search</button>
+              <button type="button" class="col-md-5 btn btn-default" ng-click="resetSearch();"><i class="fa fa-refresh"></i> Reset</button>              
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="col-md-4 btn btn-success pull-right" style="float: right;" ng-click="gotoCreatePermission();">
+              <i class="fa fa-plus"></i> Add Role</button>
+          </div>
+        </div>
+        <hr/>
+        <div class="table-responsive">
+          <div ui-grid="permissions" class="grid-default" ui-grid-selection ui-grid-pagination></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>

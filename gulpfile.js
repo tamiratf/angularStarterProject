@@ -16,7 +16,7 @@ gulp.paths = {
 
 var paths = gulp.paths;
 
-require('require-dir')('./gulp-tasks');
+//require('require-dir')('./gulp-tasks');
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
@@ -31,38 +31,15 @@ gulp.task('serve', ['sass'], function() {
 
 });
 
-// Static Server without watching scss files
-gulp.task('serve:lite', function() {
-
-  browserSync.init({
-    server: ['./', './src']
-  });
-
-  gulp.watch(paths.src + '**/*.css').on('change', browserSync.reload);
-  gulp.watch(paths.src + '**/*.html').on('change', browserSync.reload);
-  gulp.watch(paths.src + 'js/**/*.js').on('change', browserSync.reload);
-
-});
-
-gulp.task('serve:dist', function() {
-  browserSync.init({
-    server: ['./dist']
-  });
-});
-
-gulp.task('sass', ['compile-vendors'], function() {
+gulp.task('sass', function() {
   return gulp.src(paths.src + '/scss/style.scss')
-  .pipe(sass())
-  .pipe(autoprefixer())
-  .pipe(gulp.dest(paths.src + 'css'))
-  .pipe(cssmin())
-  .pipe(rename({suffix: '.min'}))
-  .pipe(gulp.dest(paths.src + 'css'))
-  .pipe(browserSync.stream());
-});
-
-gulp.task('sass:watch', function() {
-  gulp.watch(paths.src + 'scss/**/*.scss', ['sass']);
+    .pipe(sass())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(paths.src + 'css'))
+    .pipe(cssmin())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest(paths.src + 'css'))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('default', ['serve']);
